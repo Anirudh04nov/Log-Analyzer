@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Log Analyzer Dashboard</title>
+
+<style>
+body { background:#0f172a; color:#e2e8f0; font-family:Arial; text-align:center; }
+.card { background:#1e293b; padding:20px; margin:20px; border-radius:10px; }
+.high { color:red; font-weight:bold; }
+.medium { color:orange; }
+ul { list-style:none; padding:0; }
+li { padding:5px; border-bottom:1px solid #334155; }
+button { padding:10px; background:#38bdf8; border:none; }
+</style>
+
+</head>
+
+<body>
+
+<h1>🔐 Advanced Log Analyzer Dashboard</h1>
+
+<div class="card">
+<form method="POST" enctype="multipart/form-data">
+<input type="file" name="logfile" required>
+<br><br>
+<button>Analyze</button>
+</form>
+</div>
+
+<div class="card">
+<h2>📊 Summary</h2>
+<p>Total Alerts: {{ alerts|length }}</p>
+<p>Unique Attacker IPs: {{ total_ips }}</p>
+</div>
+
+<div class="card">
+<h2>🎯 Top Attackers</h2>
+<ul>
+{% for ip, count in top_attackers %}
+<li>{{ ip }} → {{ count }} attempts</li>
+{% endfor %}
+</ul>
+</div>
+
+<div class="card">
+<h2>🔥 High Risk IPs</h2>
+<ul>
+{% for ip, score in top_risky_ips %}
+<li>{{ ip }} → Risk Score: {{ score }}</li>
+{% endfor %}
+</ul>
+</div>
+
+<div class="card">
+<h2>🚨 Alerts</h2>
+<ul>
+{% for alert in alerts %}
+{% if "HIGH" in alert %}
+<li class="high">{{ alert }}</li>
+{% else %}
+<li class="medium">{{ alert }}</li>
+{% endif %}
+{% endfor %}
+</ul>
+
+<br>
+<a href="/download"><button>Download Report</button></a>
+</div>
+
+{% if graph %}
+<div class="card">
+<h2>📊 Top Attackers Graph</h2>
+<img src="/static/graph.png" width="600">
+</div>
+
+<div class="card">
+<h2>📅 Attack Trend</h2>
+<img src="/static/time_graph.png" width="600">
+</div>
+{% endif %}
+
+<div class="card">
+<h2>🕒 Recent Activity</h2>
+<ul>
+{% for event in timeline %}
+<li>{{ event }}</li>
+{% endfor %}
+</ul>
+</div>
+
+</body>
+</html>

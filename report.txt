@@ -1,0 +1,12 @@
+=== SECURITY REPORT ===
+
+HIGH: Suspicious login from 127.0.0.1
+MEDIUM: Multiple failed attempts from 183.146.159.20 (6)
+MEDIUM: Multiple failed attempts from 111.40.30.206 (6)
+MEDIUM: Multiple failed attempts from 119.193.140.176 (6)
+MEDIUM: Multiple failed attempts from 46.30.160.83 (6)
+MEDIUM: Multiple failed attempts from 46.89.129.145 (6)
+MEDIUM: Multiple failed attempts from 24.151.103.17 (157)
+HIGH: Brute force attack from 46.89.129.145
+HIGH: Brute force attack from 181.25.201.155
+MEDIUM: Multiple failed attempts from 60.187.118.40 (6)
